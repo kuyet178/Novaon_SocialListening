@@ -1,0 +1,49 @@
+﻿@namespace AioCore.Web.Layouts
+@inherits LayoutComponentBase
+
+<AntDesign.ProLayout.BasicLayout 
+    Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
+    MenuData="_menuData">
+    <ChildContent>
+        @Body
+    </ChildContent>
+    <FooterRender>
+        <FooterView Copyright="2022 AioCore - Farm" Links="Links"></FooterView>
+    </FooterRender>
+</AntDesign.ProLayout.BasicLayout>
+
+@code
+{
+    private readonly MenuDataItem[] _menuData =
+    {
+        new()
+        {
+            Path = "/",
+            Name = "Trang chủ",
+            Key = "home",
+        },
+        new()
+        {
+            Path = "/machines",
+            Name = "Danh sách thuê bao",
+            Key = "machines",
+        },
+        new()
+        {
+            Path = "/devices",
+            Name = "Danh sách thiết bị",
+            Key = "devices",
+        }
+    };
+
+    public LinkItem[] Links { get; set; } =
+    {
+        new()
+        {
+            Key = "AioCore - Farm",
+            Title = "AioCore - Farm",
+            Href = "/",
+            BlankTarget = true,
+        }
+    };
+}

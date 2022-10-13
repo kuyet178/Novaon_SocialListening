@@ -1,0 +1,32 @@
+﻿@using AioCore.Web.Pages.MachineComponents.ViewModels
+@using Newtonsoft.Json
+<Modal Title="Thông tin thuê bao" Closable="@Visible"
+       Visible="@Visible" OnOk="OnSubmit" OnCancel="@OnCancel" OkText="@("Lưu")" CancelText="@("Hủy")">
+    <Form Layout="@FormLayout.Vertical" Model="@MachineDetailModel">
+        <FormItem>
+            <Input @bind-Value="@context.Name"/>
+        </FormItem>
+        <FormItem>
+            <Input disabled @bind-Value="@context.Code"/>
+        </FormItem>
+    </Form>
+</Modal>
+
+@code{
+
+    [Parameter]
+    public bool Visible { get; set; }
+
+    public MachineDetailModel MachineDetailModel { get; set; } = new();
+
+    private void OnCancel(MouseEventArgs e)
+    {
+        Visible = false;
+    }
+
+    private void OnSubmit()
+    {
+        Console.WriteLine(JsonConvert.SerializeObject(MachineDetailModel));
+    }
+
+}

@@ -1,0 +1,28 @@
+﻿<Modal Title="@Title"
+       Visible="@Visible"
+       OnOk="@HandleOk"
+       OnCancel="@HandleCancel">
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+</Modal>
+
+@code{
+
+    [Parameter]
+    public bool Visible { get; set; }
+        private const string Title = "BasicModal";
+
+    private void HandleOk(MouseEventArgs e)
+    {
+        Console.WriteLine(e);
+        Visible = false;
+    }
+
+    private void HandleCancel(MouseEventArgs e)
+    {
+        Console.WriteLine(e);
+        Visible = false;
+    }
+
+}

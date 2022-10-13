@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AntDesign.ProLayout" Version="0.12.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\AioCore.Application\AioCore.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Identity\Pages\Account\Login.cshtml" />
+      <AdditionalFiles Include="Areas\Identity\Pages\Account\LogOut.cshtml" />
+      <AdditionalFiles Include="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+      <AdditionalFiles Include="Areas\Identity\Pages\Shared\IdentityLayout.cshtml" />
+      <AdditionalFiles Include="Areas\Identity\Pages\Shared\_LoginPartial.cshtml" />
+      <AdditionalFiles Include="Areas\Identity\Pages\_ViewImports.cshtml" />
+      <AdditionalFiles Include="Areas\Identity\Pages\_ViewStart.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\apks" />
+    </ItemGroup>
+
+</Project>

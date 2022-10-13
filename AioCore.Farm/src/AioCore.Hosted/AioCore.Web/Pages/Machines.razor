@@ -1,0 +1,80 @@
+﻿@page "/machines"
+@using MediatR
+@inject IMediator Mediator
+
+<PageContainer Title="Danh sách thuê bao">
+    <Breadcrumb>
+        <Breadcrumb>
+            <BreadcrumbItem>Trang chủ</BreadcrumbItem>
+            <BreadcrumbItem>Danh sách thuê bao</BreadcrumbItem>
+        </Breadcrumb>
+    </Breadcrumb>
+    <Extra>
+        <Button Type="@ButtonType.Primary" @onclick="@OnToggle">Thêm mới thuê bao</Button>
+    </Extra>
+    <ChildContent>
+        <div class="container">
+            <Card Class="listCard"
+                  Style="margin-top: 24px;"
+                  BodyStyle="padding: 0 32px 40px 32px">
+                <ChildContent>
+                    <AntList TItem="Machine" NoResult="Không có dữ liệu thuê bao"
+                             DataSource="@DataSource"
+                             ItemLayout="ListItemLayout.Horizontal">
+                        <ListItem Actions="_actions">
+                            <ListItemMeta Avatar="@context.Id.ToString()" Description="@context.Description">
+                                <TitleTemplate>
+                                    <a href="@context.Name">@context.Name</a>
+                                </TitleTemplate>
+                            </ListItemMeta>
+                            <div class="listContent">
+                                <div class="listContentItem">
+                                    <span>Owner</span>
+                                </div>
+                                <div class="listContentItem">
+                                    <span>Starting time</span>
+                                    <p>@context.CreatedAt.ToString("yyyy-MM-dd HH:mm")</p>
+                                </div>
+                            </div>
+                        </ListItem>
+                    </AntList>
+                </ChildContent>
+            </Card>
+        </div>
+    </ChildContent>
+</PageContainer>
+<MachineDetail Visible="@ModalVisible"/>
+
+@code
+{
+
+    public bool ModalVisible { get; set; }
+    private List<Machine>? DataSource { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Mediator.Send(new ListMachineQuery());
+        DataSource = response.Data;
+        await base.OnInitializedAsync();
+    }
+
+    private void OnToggle()
+    {
+        ModalVisible = !ModalVisible;
+        Console.WriteLine(ModalVisible);
+    }
+
+    private readonly RenderFragment[] _actions =
+    {
+        Edit
+    };
+}
+
+@code {
+
+    private static readonly RenderFragment Edit =
+        @<a key="edit">
+            Edit
+        </a>;
+
+}
